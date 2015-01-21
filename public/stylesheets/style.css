@@ -1,0 +1,8 @@
+.melody {
+  padding-bottom: 30px; }
+
+.time, .name, .author, .length, .desc, audio {
+  margin: 10px;
+  float: left; }
+
+/*# sourceMappingURL=style.css.map */

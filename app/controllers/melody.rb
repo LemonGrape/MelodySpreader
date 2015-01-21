@@ -32,6 +32,7 @@ SpreadMelody::App.controllers :melody do
       m = Melody.new
       m.author = params[:author]
       m.name  = params[:title]
+      m.desc = params[:desc]
       m.raw_path = raw_path
       m.wav_path = wav_path
       m.save

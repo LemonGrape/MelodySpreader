@@ -1,8 +1,9 @@
 li.melody
   .name #{mel.try(:name)}
-  .author #{mel.try(:author)}
+  .author by #{mel.try(:author)}
   .length #{mel.try(:duration)}
-  .desc #{mel.try(:description)}
-  =="<audio src='#{mel.try(:wav_path)}' controls><audio>"
+  .desc 説明: #{mel.try(:desc)}
+  .time #{mel.try(:created_at).to_s}
+  =="<audio class='audio' src='#{mel.try(:wav_path)}' controls><audio>"
 
 
