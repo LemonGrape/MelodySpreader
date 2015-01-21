@@ -28,7 +28,7 @@ SpreadMelody::App.controllers :melody do
       open(inner_raw_path, 'wb') do |output|
         output.write(params[:musicFile][:tempfile].read)
       end
-      `fluidsynth -F #{inner_wav_path} #{Dir.pwd.to_s}/public/sf/TimGM6mb.sf2 #{inner_raw_path} `
+      `/usr/local/bin/fluidsynth -F #{inner_wav_path} #{Dir.pwd.to_s}/public/sf/TimGM6mb.sf2 #{inner_raw_path} `
       m = Melody.new
       m.author = params[:author]
       m.name  = params[:title]
