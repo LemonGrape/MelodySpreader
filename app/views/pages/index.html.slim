@@ -6,7 +6,7 @@ html
     #contents
     - melodies = Melody.all
       ul#melodies
-      -melodies.each |m|
+      -melodies.each do |m|
         =patial 'layouts/melody_item' , :locals => {:mel => m}
        
     =partial 'layouts/footer'

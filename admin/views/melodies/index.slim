@@ -1,0 +1,68 @@
+ul class="nav nav-tabs"
+  li class="active" = link_to tag_icon(:list, pat(:list)), url(:melodies, :index)
+  li = link_to tag_icon(:plus, pat(:new)), url(:melodies, :new)
+
+div class="tabs-content"
+  table class="table table-striped table-hover table-condensed" id="list"
+    thead
+      tr
+        th class='header list-menu'
+          div class='dropdown'
+            a href='#' class='list-menu-toggle.dropdown-toggle dropdown-toggle' data-toggle='dropdown'
+              = tag_icon :magic
+              span class='caret'
+            ul class='list-menu dropdown-menu' role='dropdown'
+              li class='list-menu-wrapper' = link_to tag_icon(:check, pat(:select_all)), '#', :id => 'select-all', :class => 'list-menu-link'
+              li class='list-menu-wrapper list-menu-wrapper-disabled' = link_to tag_icon('check-empty', pat(:deselect_all)), '#', :id => 'deselect-all', :class => 'list-menu-link list-menu-link-disabled'
+              li class='list-menu-divider divider'
+              li class='list-menu-wrapper list-menu-wrapper-disabled'
+                = link_to tag_icon(:trash, pat(:delete_selected)), '#', :id => 'delete-selected', :class => 'list-menu-link list-menu-link-disabled'
+                div class='list-menu-popover-delete-selected popover right'
+                  div class='arrow'
+                  h3 class='popover-title' = pat(:delete_selected_title)
+                  div class='popover-content'
+                    = form_tag url(:melodies, :destroy_many), :method => :delete do
+                      = hidden_field_tag :melody_ids, :'data-delete-many-ids' => true
+                      = submit_tag  pat(:delete), :class =>'list-menu-popover-delete-selected-btn btn btn-danger btn-small'
+                      div class='btn btn-default btn-small cancel' = pat(:cancel)
+        th class='header' = mat(:melody, :id)
+        th class='header' = mat(:melody, :name)
+        th class='header' = mat(:melody, :author)
+        th class='header' = mat(:melody, :desc)
+        th class='header' = mat(:melody, :duration)
+        th class='header' = mat(:melody, :wav_path)
+        th class='header' = mat(:melody, :sheet_path)
+        th class='header' = mat(:melody, :raw_path)
+        th class='header' = mat(:melody, :inst)
+        th class='header' = mat(:melody, :composer_id)
+        th class='header' = mat(:melody, :created_at)
+        th class='header' = mat(:melody, :updated_at)
+        th class='header list-row-action-header'
+
+    tbody
+      -@melodies.each do |melody|
+        tr class='list-row'
+          td class='list-column list-selectable' = check_box_tag 'melody_ids[]', :value => melody.id, :class => 'list-selectable-checkbox'
+          td class='list-column' = melody.id
+          td class='list-column' = melody.name
+          td class='list-column' = melody.author
+          td class='list-column' = melody.desc
+          td class='list-column' = melody.duration
+          td class='list-column' = melody.wav_path
+          td class='list-column' = melody.sheet_path
+          td class='list-column' = melody.raw_path
+          td class='list-column' = melody.inst
+          td class='list-column' = melody.composer_id
+          td class='list-column' = time_ago_in_words melody.created_at
+          td class='list-column' = time_ago_in_words melody.updated_at
+          td class='list-column list-row-action'
+            div class='list-row-action-wrapper'
+              = link_to tag_icon(:edit), :href => url(:melodies, :edit, :id => melody.id), :rel => :tooltip, :title => "#{pat(:edit)} melody", :class => 'list-row-action-wrapper-link'
+              = link_to tag_icon(:trash), :rel => :tooltip, :title => "#{pat(:delete)} melody", :class => 'list-row-action-delete-one list-row-action-wrapper-link'
+              div class='popover list-row-action-popover-delete-one left'
+                div class='arrow'
+                h3 class='popover-title' = pat(:delete, :model => "melody")
+                div class='popover-content'
+                  = form_tag url(:melodies, :destroy, :id => melody.id), :method => :delete do
+                    = submit_tag pat(:delete), :class =>'list-row-action-popover-delete-one-btn btn btn-danger btn-small'
+                    div class='btn btn-default btn-small cancel' = pat(:cancel)

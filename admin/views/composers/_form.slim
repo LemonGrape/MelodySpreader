@@ -1,0 +1,31 @@
+- error = @composer.errors.include?(:name)
+fieldset class='control-group#{error ? ' has-error' : ''}'
+  = f.label :name, :class => 'control-label'
+  div class='controls'
+    = f.text_field :name, :class => 'form-control input-large input-with-feedback', :autofocus => true
+    span class='help-inline' = error ? f.error_message_on(:name, :class => 'text-error') : pat(:example)
+- error = @composer.errors.include?(:email)
+fieldset class='control-group#{error ? ' has-error' : ''}'
+  = f.label :email, :class => 'control-label'
+  div class='controls'
+    = f.text_field :email, :class => 'form-control input-large input-with-feedback'
+    span class='help-inline' = error ? f.error_message_on(:email, :class => 'text-error') : pat(:example)
+- error = @composer.errors.include?(:twitter)
+fieldset class='control-group#{error ? ' has-error' : ''}'
+  = f.label :twitter, :class => 'control-label'
+  div class='controls'
+    = f.text_field :twitter, :class => 'form-control input-large input-with-feedback'
+    span class='help-inline' = error ? f.error_message_on(:twitter, :class => 'text-error') : pat(:example)
+- error = @composer.errors.include?(:desc)
+fieldset class='control-group#{error ? ' has-error' : ''}'
+  = f.label :desc, :class => 'control-label'
+  div class='controls'
+    = f.text_field :desc, :class => 'form-control input-large input-with-feedback'
+    span class='help-inline' = error ? f.error_message_on(:desc, :class => 'text-error') : pat(:example)
+
+div class="form-actions"
+  = f.submit pat(:save), :class => 'btn btn-primary'
+  |&nbsp;
+  = f.submit pat(:save_and_continue), :class => 'btn btn-info', :name => 'save_and_continue'
+  |&nbsp;
+  = link_to pat(:cancel), url(:composers, :index), :class => 'btn btn-default'
