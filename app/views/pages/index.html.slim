@@ -4,9 +4,8 @@ html
   body
     h1 Melody Spreader
     #contents
-    - melodies = Melody.all
+      - melodies = Melody.order('updated_at desc').all
       ul#melodies
-      -melodies.each do |m|
-        =patial 'layouts/melody_item' , :locals => {:mel => m}
-       
+        -melodies.each do |m|
+          =partial 'layouts/melody_item' , :locals => {:mel => m}
     =partial 'layouts/footer'

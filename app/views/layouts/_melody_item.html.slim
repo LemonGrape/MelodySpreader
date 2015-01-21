@@ -3,3 +3,6 @@ li.melody
   .author #{mel.try(:author)}
   .length #{mel.try(:duration)}
   .desc #{mel.try(:description)}
+  =="<audio src='#{mel.try(:wav_path)}' controls><audio>"
+
+

@@ -54,7 +54,10 @@ module SpreadMelody
 
     get '/' do
      render 'pages/index'
+    end
 
+    get '/upload' do
+     render 'pages/upload'
     end
     ##
     # You can manage errors like:
