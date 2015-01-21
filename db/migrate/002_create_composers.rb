@@ -4,6 +4,7 @@ class CreateComposers < ActiveRecord::Migration
       t.string :name
       t.string :email
       t.string :twitter
+      t.string :desc
       t.timestamps
     end
   end
