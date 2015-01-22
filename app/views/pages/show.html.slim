@@ -1,0 +1,14 @@
+doctype html
+html 
+  =partial 'layouts/header'
+  body
+    h1 Melody Spreader
+    -mel = @mel
+    #contents
+      .name #{mel.try(:name)}
+      .author by #{mel.try(:author)}
+      .length #{mel.try(:duration)}
+      .desc 説明: #{mel.try(:desc)}
+      .time #{mel.try(:created_at).to_s}
+      =="<audio class='audio' src='#{mel.try(:wav_path)}' controls><audio>"
+    =partial 'layouts/footer'

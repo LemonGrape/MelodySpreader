@@ -53,22 +53,31 @@ module SpreadMelody
     #
 
     get '/' do
-     render 'pages/index'
+      render 'pages/index'
+    end
+
+    get '/show/:author/:name' do
+      @mel =  Melody.find_by(:author => params[:author],:name => params[:name])
+      unless @mel == nil
+        render 'pages/show'
+      else 
+        render 'errors/404'
+      end 
     end
 
     get '/upload' do
-     render 'pages/upload'
+      render 'pages/upload'
     end
     ##
     # You can manage errors like:
-  
-       error 404 do
-         render 'errors/404'
-       end
-    
-       error 505 do
-         render 'errors/505'
-       end
+
+    error 404 do
+      render 'errors/404'
+    end
+
+    error 505 do
+      render 'errors/505'
+    end
     #
   end
 end
