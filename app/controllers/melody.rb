@@ -22,6 +22,7 @@ SpreadMelody::App.controllers :melody do
   post :upload do
     raw_path = "/data/" + params[:title] + ".mid"
     wav_path = "/data/" + params[:title] + ".wav"
+    mp3_path = "/data/" + params[:title] + ".mp3"
     inner_raw_path = Dir.pwd.to_s + "/public" +  raw_path
     inner_wav_path = Dir.pwd.to_s + "/public" + wav_path
 
@@ -39,12 +40,13 @@ SpreadMelody::App.controllers :melody do
       output.write(params[:musicFile][:tempfile].read)
     end
       `/usr/local/bin/fluidsynth -F #{inner_wav_path} #{Dir.pwd.to_s}/public/sf/TimGM6mb.sf2 #{inner_raw_path} `
+      `/usr/local/bin/lame  #{inner_wav_path} `
     m = Melody.new
     m.author = params[:author]
     m.name  = params[:title]
     m.desc = params[:desc]
     m.raw_path = raw_path
-    m.wav_path = wav_path
+    m.wav_path = mp3_path
     m.save
     return "Success"
   end
