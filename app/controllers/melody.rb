@@ -29,7 +29,7 @@ SpreadMelody::App.controllers :melody do
     unless params[:musicFile][:type] == "audio/midi" 
       return "This is not midi file"
     end
-    if Melody.find_by(:wav_path => wav_path )
+    if Melody.find_by(:wav_path => wav_path , :author => params[:author])
       return  "Duplicated Name"
     end
     if params[:musicFile][:tempfile].size > 50000
