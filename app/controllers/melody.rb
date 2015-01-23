@@ -26,7 +26,8 @@ SpreadMelody::App.controllers :melody do
     inner_raw_path = Dir.pwd.to_s + "/public" +  raw_path
     inner_wav_path = Dir.pwd.to_s + "/public" + wav_path
 
-    unless params[:musicFile][:type] == "audio/midi" 
+    unless params[:musicFile][:type] == "audio/midi" or params[:musicFile][:type] == "audio/mid" 
+
       return "This is not midi file"
     end
     if Melody.find_by(:wav_path => wav_path , :author => params[:author])
